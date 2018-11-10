@@ -181,7 +181,6 @@ export default class applies extends base {
 
     const url = `${this.baseUrl2}/api/zwzx/apply/applyList.do?nonce_str=` + nonce_str + `&sign=` + signVal+ `&status=`+status;
     return new Page(url, this._processGuideManagementListItem.bind(this,management,guideIdName));
-//    return new Page(url);
   }
 
   static applyInterviewList(management,guideIdName,status) {
