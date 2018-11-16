@@ -14,7 +14,7 @@
         <view class="guide-list">
           <repeat for="{{page.list}}" key="index" index="index" item="item">
 <!--            <view @tap = "enterApply({{item.id}},{{item.guideId}})" > -->
-              <AuditItem :apply.sync="item" @enter.user="enterApply" @start.user="startApply"/>
+              <AuditItem :apply.sync="item" @reApply.user="reApply" @start.user="startApply"/>
 <!--            </view> -->
           </repeat>
         </view>
@@ -96,11 +96,11 @@
         this.$navigate(`edit?mode=create&categoryId=${this.categories.selectedId}`);
       }
 */
-      async enterApply(info) {
+      async reApply() {
         if (!auth.isLogin()) {
-          this.$root.$navigate('/pages/login/index',{url:'/pages/apply/edit',id:info.id,guideId:info.guideId});
+          this.$root.$navigate('/pages/login/index',{url:'/pages/apply/myWorks'});
         }else{
-          this.$root.$navigate('/pages/apply/edit', {id:info.id,guideId:info.guideId});
+          this.$redirect('../apply/myWorks');
         }
 
       },
@@ -109,7 +109,8 @@
           this.$root.$navigate('/pages/login/index',{url:'/pages/apply/edit',id:info.id,guideId:info.guideId});
         }else{
           try {
-            const ret=await applies.startApply(info.id);
+            const resCode=wepy.$instance.globalData.resCode;
+            const ret=await applies.startApply(info.id,info.formId,resCode);
             console.info("ret",ret);
             await Tips.success('开始预审');
           } catch (e) {

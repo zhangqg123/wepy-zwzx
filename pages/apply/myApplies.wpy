@@ -14,7 +14,7 @@
         <view class="guide-list">
           <repeat for="{{page.list}}" key="index" index="index" item="item">
 <!--            <view @tap = "enterApply({{item.id}},{{item.guideId}})" > -->
-              <ApplyItem :apply.sync="item" @enter.user="enterApply" @start.user="startApply"/>
+              <ApplyItem :apply.sync="item" @enter.user="enterApply" />
 <!--            </view> -->
           </repeat>
         </view>

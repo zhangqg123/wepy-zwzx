@@ -17,7 +17,7 @@
           <image src="/images/home/zw2.png"/>
           <text>办件查询</text>
         </navigator>
-        <navigator class="column-center" url="../apply/interview">
+        <navigator class="column-center" url="../apply/myInterviews">
           <image src="/images/home/zw3.png"/>
           <text>咨询投诉</text>
         </navigator>
@@ -72,6 +72,9 @@
     data = {...this.def};
     async onLoad (option) {
       try {
+        const res=await wepy.login();
+//        this.userInfo = await wepy.getUserInfo();
+        wepy.$instance.globalData.resCode=res.code;
         this.show = true;
         const data = await zwzx.queryAllAdImages();
         if (data.success == true) {

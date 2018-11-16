@@ -18,7 +18,6 @@ export default class zwzx extends base {
   static async queryAllAdImages () {
     const url = `${this.baseUrl2}/work/cms/queryAllAdImages.do`;
     const data=await this.get(url);
-    console.info("ad.data",data);
     data.apiAdUpload=`${this.apiAdUpload}`;
     return data;
   }

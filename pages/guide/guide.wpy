@@ -302,7 +302,6 @@
       this.guideId = guideId;
       this.tab.selectedId = 'BASE_INFO';
       this.innerCategories = await guides.getInnerCategories();
-//      if (this.mode == 'edit') {
         const detail = await guides.detail(guideId);
         this.input.name=detail.guideName;
         this.input.itemType=detail.itemType;
@@ -329,20 +328,7 @@
         this.input.foundation=detail.foundation;
         this.input.feeScale=detail.feeScale;
 
-        console.info("this.innerCategories:",this.innerCategories);
-//        const aaa=this.innerCategories.find(item => item.id == detail.management);
-//        console.info("aaa:",aaa);
         this.input.inner = this.innerCategories.find(item => item.id == this.input.innerCid).name
-//      }
-/*      if (this.mode == 'create') {
-        if (categoryId != null) {
-          const category = this.innerCategories.find(item => item.id == categoryId);
-          if (category && category.type != 'RECOMMEND') {
-            this.input.inner = category.name;
-          }
-        }
-      }
-*/
       Event.listen(Event.GOODS_DETAILS_UPDATE, this.detailsUpdate.bind(this), this);
       Event.listen(Event.SKU_PAGE_NAVIGATE, this.navigate.bind(this), this);
       this.loaded();
@@ -441,7 +427,7 @@
     };
     mixins = [base, input];
     config = {
-      navigationBarTitleText: '编辑商品'
+      navigationBarTitleText: '办事指南'
     };
   }
 </script>

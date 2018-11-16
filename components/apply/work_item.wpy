@@ -12,18 +12,17 @@
 
         <view class="row-end  mt10 " >
 
-            <view class="small label primary"  @tap = "enterApply({{apply.applyId}},{{apply.guideId}})" wx:if="{{apply.applyStatus==6}}">
+            <button  class="my-mini-btn mr10" type="primary" @tap="enterApply({{apply.applyId}},{{apply.guideId}})" wx:if="{{apply.applyStatus==6}}">
               <image class="icon-s" src="/images/icons/zw10.png"/>编辑申报
-            </view>
-            <view class="small label primary"  @tap = "reApply({{apply.applyId}},{{apply.guideId}},{{apply.taskId}})" wx:if="{{apply.applyStatus==6}}">
+            </button>
+            <form bindsubmit="reApply({{apply.applyId}},{{apply.guideId}},{{apply.taskId}})" report-submit='true' wx:if="{{apply.applyStatus==6}}">
+              <button form-type="submit" class="my-mini-btn mr10" type="primary" >
               <image class="icon-s" src="/images/icons/zw8.png"/>重新申请
-            </view>
-            <view class="small label disabled" wx:if="{{apply.applyStatus==1}}">
-              <image class="icon-s" src="/images/icons/up-arrow2.png"/>重新申请
-            </view>
-            <view class="small label primary"  @tap = "cancelApply({{apply.applyId}},{{apply.guideId}},{{apply.taskId}})" wx:if="{{apply.applyStatus==6}}">
+              </button>
+            </form>            
+            <button  class="my-mini-btn mr10" type="primary" @tap="cancelApply({{apply.applyId}},{{apply.guideId}},{{apply.taskId}})" wx:if="{{apply.applyStatus==6}}">
               <image class="icon-s" src="/images/icons/zw10.png"/>撤销申请
-            </view>
+            </button>
 
         </view>
 

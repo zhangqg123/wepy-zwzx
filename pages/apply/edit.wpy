@@ -5,7 +5,7 @@
     
   </view>
   <view wx:if="{{input.applyStatus==0 || input.applyStatus==6 || input.applyStatus==null}}">
-    <form @submit="submit">
+    <form bindsubmit="submit" report-submit="true">
       <view class="detail-box">
         <view class="weui-cells-form">
           <view class="weui-cell">
@@ -170,7 +170,6 @@
         console.info("option",option);
         const loginCode = auth.getConfig('login_code');
         const status=auth.getConfig('status');
-        console.info('status',status);
         if (loginCode != null && status > 3) {
           if(option.id!=null&&option.id!=""){
             this.from="myApplies"
@@ -236,7 +235,7 @@
     };
     methods = {
 
-      // 删除商品
+      // 删除
       async remove() {
         console.info("this.input.applyStatus",this.input.applyStatus);
         await Tips.confirm('是否确认删除该申请？');
@@ -247,14 +246,14 @@
       },
 
       // 提交表单
-      async submit() {
-       if (!this.validate()) {
+      async submit(e) {
+        console.info('e:',e);
+        if (!this.validate()) {
           return;
         }
         const data = {
 
         };
-        Tips.loading('保存中');
       
         Tips.loading('保存中', true);
         // 字段信息
@@ -290,6 +289,9 @@
             }
           });
         data.material=JSON.stringify(temp);
+//        data.resCode=wepy.$instance.globalData.resCode;
+//        data.formId=e.detail.formId;
+//        console.info('data',data);
         // 处理图片信息
 /*        for (let picture of temp) {
           if (picture.material.substring(0, 6) == 'wxfile' || picture.material.substring(0, 11) == 'http://tmp/') {
@@ -414,7 +416,7 @@
     };
     mixins = [base, input];
     config = {
-      navigationBarTitleText: '编辑商品'
+      navigationBarTitleText: '申报内容'
     };
   }
 </script>

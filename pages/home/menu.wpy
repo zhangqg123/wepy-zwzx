@@ -45,7 +45,7 @@
       this.loaded();
     };
     methods = {
-      // 进入店铺
+      // 进入部门
       async enter(menuId) {
         this.$root.$navigate('/pages/guide/guide_list', {management: menuId});
       },

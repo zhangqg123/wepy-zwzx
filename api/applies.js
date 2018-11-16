@@ -11,15 +11,17 @@ export default class applies extends base {
   /**
    * 申报预约
    */
-  static async startApply(applyId) {
+  static async startApply(applyId,formId,resCode) {
     var nonce_str = rand.getRand();//随机数
     var postParams=[];
     postParams[0]=["nonce_str",nonce_str];
     postParams[1]=["status","applyStart"];
     postParams[2]=["applyId",applyId];
+    postParams[3]=["formId",formId];
+    postParams[4]=["resCode",resCode];
     var signVal=sign.createSign(postParams,appId);//签名
 
-    const url = `${this.baseUrl2}/api/zwzx/applyAudit/auditStart.do?applyId=${applyId}&nonce_str=` + nonce_str + `&sign=` + signVal+ `&status=applyStart`;
+    const url = `${this.baseUrl2}/api/zwzx/applyAudit/auditStart.do?applyId=${applyId}&formId=${formId}&resCode=${resCode}&nonce_str=` + nonce_str + `&sign=` + signVal+ `&status=applyStart`;
     return await this.get(url).then(data => {
       return data == null ? [] : data;
     });

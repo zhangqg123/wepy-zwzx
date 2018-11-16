@@ -5,6 +5,7 @@ page{
 }
 
 //******外边距原子样式******/
+.mr6{margin-right: 6rpx}
 .mr10{margin-right: 10rpx}
 .mr20{margin-right: 20rpx}
 .ml10{margin-left: 10rpx}
@@ -46,6 +47,16 @@ button{
 }
 .weui-btn.mini-btn{
   margin-top: 0;
+}
+.my-mini-btn{
+  width:160rpx;
+  height:50rpx;
+  padding:0;
+  vertical-align:middle;
+  text-align: center;
+  line-height: 50rpx;
+  border-radius:5rpx;
+  font-size:30rpx
 }
 button.pain-btn[open-type="share"]::after {
   border:none;

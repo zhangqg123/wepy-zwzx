@@ -86,22 +86,27 @@
         if (loginCode != null) {
           this.loginCode=loginCode;
           try {
-            let attributes;
+            let retData;
             try {
-              attributes = await auth.idCardLogin(this.loginMessage.realname, this.loginMessage.idcard);
-                Event.emit(Event.USER_LOGIN);                
+              retData = await auth.idCardLogin(this.loginMessage.realname, this.loginMessage.idcard);
+              console.info("retData",retData);
+              if(retData.success==false){
+                Tips.modal(retData.msg);
+                return;
+              }
             } catch (err) {
                 this.tips(err.message);
                 return;
             }
 
-            if(attributes.status){
-              this.status=attributes.status;
+            if(retData.attributes.status){
+              this.status=retData.attributes.status;
               if(this.status==4){
-                await auth.setConfig('status',attributes.status);
+                await auth.setConfig('status',retData.attributes.status);
                 this.$switch('/pages/home/myproject');          
               }
             }
+            Event.emit(Event.USER_LOGIN);                
           } catch (e) {
             this.tips(e.message);
           } finally {

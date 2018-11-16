@@ -18,6 +18,7 @@
         'Cookie': ''
       },
       appId: 'wx5c51671623808ac0',
+      resCode: '',
       appCode: 'xxx',
       aesKey: "W3ZNF7UMBAn9WFnx",
       ivKey: "chMQRwqC2xIIXqLV",

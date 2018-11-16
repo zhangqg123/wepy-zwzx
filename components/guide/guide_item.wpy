@@ -27,13 +27,13 @@
         </view>
         <view class="row  mt10">
             <view class="small label primary" @tap="enterGuide({{guide.id}})">
-              <image class="icon-s" src="/images/icons/zw10.png"/>办事指南
+              <image class="icon-s" src="/images/icons/zw10.png"/><text class="white mr6">办事指南</text>
             </view>
             <view class="small label primary" @tap="enterApply({{guide.id}},{{guide.guideName}},{{guide.management}})">
-              <image class="icon-s" src="/images/icons/zw8.png"/>我要申报
+              <image class="icon-s" src="/images/icons/zw8.png"/><text class="white mr6">我要申报</text>
             </view>
-            <navigator class="column-center" url="../apply/myAudits"><view class="small label primary"><image class="icon-s" src="/images/icons/zw9.png"/>我要预审</view></navigator>
-            <navigator class="column-center" url="../apply/myInterviews"><view class="small label primary" ><image class="icon-s" src="/images/icons/zw7.png"/>我要预约</view></navigator>
+            <navigator class="column-center" url="../apply/myAudits"><view class="small label primary"><image class="icon-s" src="/images/icons/zw9.png"/><text class="white mr6">我要预审</text></view></navigator>
+            <navigator class="column-center" url="../apply/myInterviews"><view class="small label primary" ><image class="icon-s" src="/images/icons/zw7.png"/><text class="white mr6">我要预约</text></view></navigator>
         </view>
       </view>
     </view>

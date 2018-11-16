@@ -14,7 +14,7 @@
                 <input class="weui-input" id="phone" @input="input" type="number" maxlength="11" placeholder="请输入手机号"/>
               </view>
               <view class="weui-cell__ft">
-                <VCode @tap.user="code"/>
+                <VCode @tap.user="smsCode"/>
               </view>
             </view>
             <view class="weui-cell weui-cell_input weui-cell_vcode">
@@ -225,33 +225,28 @@
         }
       },
 
-      async code() {
+      async smsCode() {
         if (!this.isPhoneValid(this.input.phone)) {
           return;
         }
         // 发送验证码
-        let attributes;
+        let data;
         try {
-          attributes= await auth.smsCode(this.input.phone);
-          if(attributes.register!=1){
+          data= await auth.smsCode(this.input.phone);
+          console.info('data',data);
+          if(data.success==false && data.msg!=null){
+            Tips.modal(data.msg);
+          }
+
+          if(data.success==true){
             this.$invoke('VCode', 'cd', 60);
             Tips.success('验证码已发送');
           }
-
+          
         } catch (err) {
-          if (err.serverCode == 10005) {
-            console.debug('请求验证码太频繁');
-            this.$invoke('VCode', 'cd', 60);
-          }
-          this.tips(err.message);
+          this.tips(e.message);
         } finally {
           this.loaded();
-        }
-        if(attributes.register==1){
-           await Tips.modal('手机号码已注册');
-        }else{
-          if(attributes.status){
-          }
         }
       }
     };

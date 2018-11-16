@@ -100,7 +100,7 @@ export default class auth extends base {
     var signVal=sign.createSign(postParams,appId);//签名
     const url = `${this.baseUrl2}/api/txsms/smsCode.do?phone=${phone}&nonce_str=` + nonce_str + `&sign=` + signVal+ `&status=smsCode`;
     const data = await this.get(url);
-    return data.attributes;
+    return data;
   }
   /**
    * 身份证验证登录
@@ -115,7 +115,7 @@ export default class auth extends base {
     const url = `${this.baseUrl2}/api/zwzx/idCardLogin.do?idcard=${idcard}&`+encodeURI(encodeURI(`realname=${realname}`))+`&nonce_str=` + nonce_str + `&sign=` + signVal+ `&status=idcard`;
     console.info("url:",url);
     const data = await this.get(url);
-    return data.attributes;
+    return data;
   }
   /**
    * 检查登录情况
